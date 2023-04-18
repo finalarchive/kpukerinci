@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinalArchive</title>
+  <!-- Load Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <!-- Load Vue.js -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body class="container-md">
+  <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <h2><img src="https://kab-kerinci.kpu.go.id/images/logo-kpu.png" alt="" width="50" height="auto" class="d-inline-block align-text-top">
+        Komisi Pemilihan Umum Kabupaten Kerinci</h2>
+      </a>
+    </div>
+  </nav>
+    <div class="header">
+      <h1>PENOMORAN <span style="color:#ff6600">SURAT DINAS</span> ADHOC</h1>
+    </div>
+    <div class="sidebar">
+      <div id="app">
+        <div class="form-group">
+          <label for="wilayah-kerja" class="fw-bold">Sekretariat</label>
+          <select id="wilayah-kerja" v-model="selectedWilayah" class="form-select">
+            <option value="" disabled selected>Pilih Sekretariat</option>
+            <option value="ppk">Panitia Pemilihan Kecamatan</option>
+            <option value="pps">Panitia Pemungutan Suara</option>
+          </select>
+        </div>
+        <div class="form-group" v-show="selectedWilayah === 'ppk'">
+          <label for="kecamatan" class="fw-bold">Kecamatan</label>
+          <select id="kecamatan" v-model="selectedKecamatan" class="form-select">
+            <option value="" disabled selected>Pilih Kecamatan</option>
+            <option value="150105">AIR HANGAT</option>
+            <option value="150121">AIR HANGAT BARAT</option>
+            <option value="150111">AIR HANGAT TIMUR</option>
+            <option value="150107">BATANG MERANGIN</option>
+            <option value="150120">BUKITKERMAN</option>
+            <option value="150102">DANAU KERINCI</option>
+            <option value="150123">DANAU KERINCI BARAT</option>
+            <option value="150117">DEPATI TUJUH</option>
+            <option value="150106">GUNUNG KERINCI</option>
+            <option value="150101">GUNUNG RAYA</option>
+            <option value="150115">GUNUNG TUJUH</option>
+            <option value="150109">KAYU ARO</option>
+            <option value="150119">KAYU ARO BARAT</option>
+            <option value="150108">KELILING DANAU</option>
+            <option value="150104">SITINJAU LAUT</option>
+            <option value="150116">SIULAK</option>
+            <option value="150118">SIULAK MUKAI</option>
+            <option value="150122">TANAH COGOK</option>
+          </select>
+        </div>
+        <div class="form-group" v-show="selectedWilayah === 'pps'">
+          <label for="kecamatan" class="fw-bold">Kecamatan</label>
+          <select id="kecamatan" v-model="selectedKecamatan" class="form-select">
+            <option value="" disabled selected>Pilih Kecamatan</option>
+            <option value="150105">AIR HANGAT</option>
+            <option value="150121">AIR HANGAT BARAT</option>
+            <option value="150111">AIR HANGAT TIMUR</option>
+            <option value="150107">BATANG MERANGIN</option>
+            <option value="150120">BUKITKERMAN</option>
+            <option value="150102">DANAU KERINCI</option>
+            <option value="150123">DANAU KERINCI BARAT</option>
+            <option value="150117">DEPATI TUJUH</option>
+            <option value="150106">GUNUNG KERINCI</option>
+            <option value="150101">GUNUNG RAYA</option>
+            <option value="150115">GUNUNG TUJUH</option>
+            <option value="150109">KAYU ARO</option>
+            <option value="150119">KAYU ARO BARAT</option>
+            <option value="150108">KELILING DANAU</option>
+            <option value="150104">SITINJAU LAUT</option>
+            <option value="150116">SIULAK</option>
+            <option value="150118">SIULAK MUKAI</option>
+            <option value="150122">TANAH COGOK</option>
+          </select>
+        </div>
+        <div class="form-group" v-show="selectedWilayah === 'pps' && selectedKecamatan === '150105'"> <!--AIR HANGAT-->
+          <label for="desa" class="fw-bold">Desa</label>
+          <select id="desa" v-model="selectedDesa" class="form-select">
+            <option value="" disabled selected>Pilih Desa</option>
+            <option value="1501052022">AIR TENANG</option>
+            <option value="1501052014">BALAI</option>
+            <option value="1501052002">BARU SEMURUP</option>
+            <option value="1501052012">KOTO DI AIR</option>
+            <option value="1501052004">KOTO DUA LAMA</option>
+            <option value="1501052038">KOTO MAJIDIN DI AIR</option>
+            <option value="1501052015">KOTO MAJIDIN HILIR</option>
+            <option value="1501052029">KOTO MAJIDIN MUDIK</option>
+            <option value="1501052024">MUARA SEMERAH</option>
+            <option value="1501052035">MUARA SEMERAH MUDIK</option>
+            <option value="1501052013">PASAR SEMURUP</option>
+            <option value="1501052016">PENDUNG HILIR</option>
+            <option value="1501052018">PENDUNG MUDIK</option>
+            <option value="1501052039">PENDUNG TENGAH</option>
+            <option value="1501052037">SAWAHAN JAYA</option>
+            <option value="1501052036">SAWAHAN KOTO MAJIDIN</option>
+          </select>
+        </div>
+
+        <div class="form-group" v-show="selectedWilayah === 'pps' && selectedKecamatan === '150121'"> <!--AIR HANGAT BARAT-->
+          <label for="desa" class="fw-bold">Desa</label>
+          <select id="desa" v-model="selectedDesa" class="form-select">
+            <option value="" disabled selected>Pilih Desa</option>
+            <option value="1501212012">AIR BERSIH</option>
+            <option value="1501212003">AIR PANAS</option>
+            <option value="1501212002">BARU</option>
+            <option value="1501212004">HAMPARAN PUGU</option>
+            <option value="1501212011">KECIL</option>
+            <option value="1501212010">KOTO CAYO</option>
+            <option value="1501212008">KOTO DATUK</option>
+            <option value="1501212009">KOTO DUA BARU</option>
+            <option value="1501212001">KOTO MEBAI</option>
+            <option value="1501212006">KOTO MUDIK</option>
+            <option value="1501212007">KOTO TENGAH</option>
+            <option value="1501212005">PUGU</option>
+          </select>
+        </div>
+
+        <div class="form-group" v-show="selectedWilayah === 'pps' && selectedKecamatan === '150111'"> <!--AIR HANGAT TIMUR-->
+          <label for="desa" class="fw-bold">Desa</label>
+          <select id="desa" v-model="selectedDesa" class="form-select">
+            <option value="" disabled selected>Pilih Desa</option>
+            <option value="1501112008">AIR HANGAT</option>
+            <option value="1501112027">AIR PANAS SUNGAIABU</option>
+            <option value="1501112026">BARU AIR HANGAT</option>
+            <option value="1501112009">BARU SUNGAI TUTUNG</option>
+            <option value="1501112028">BARU SUNGAIABU</option>
+            <option value="1501112022">BARU SUNGAIDERAS</option>
+            <option value="1501112024">BARU SUNGAIMEDANG</option>
+            <option value="1501112018">KEMANTAN AGUNG</option>
+            <option value="1501112003">KEMANTAN DARAT</option>
+            <option value="1501112014">KEMANTAN HILIR</option>
+            <option value="1501112002">KEMANTAN KEBALAI</option>
+            <option value="1501112020">KEMANTAN MUDIK</option>
+            <option value="1501112025">KEMANTAN RAYA</option>
+            <option value="1501112001">KEMANTAN TINGGI</option>
+            <option value="1501112006">KOTO TEBAT</option>
+            <option value="1501112005">PONDOK SUNGAIABU</option>
+            <option value="1501112011">PUNGUT HILIR</option>
+            <option value="1501112012">PUNGUT MUDIK</option>
+            <option value="1501112010">PUNGUT TENGAH</option>
+            <option value="1501112021">SIMPANG EMPAT SUNGAI TUTUNG</option>
+            <option value="1501112004">SUNGAIABU</option>
+            <option value="1501112019">SUNGAIDERAS</option>
+            <option value="1501112007">SUNGAIMEDANG</option>
+            <option value="1501112015">SUNGAITUTUNG</option>
+            <option value="1501112023">TAMAN JERNIH SUNGAITUTUNG</option>
+          </select>
+        </div>
+
+        <div class="form-group" v-show="selectedWilayah === 'pps' && selectedKecamatan === '150107'"> <!--BATANG MERANGIN-->
+          <label for="desa" class="fw-bold">Desa</label>
+          <select id="desa" v-model="selectedDesa" class="form-select">
+            <option value="" disabled selected>Pilih Desa</option>
+            <option value="1501072013">BATANG MERANGIN</option>
+            <option value="1501072011">BARU PULAU SANGKAR</option>
+            <option value="1501072006">LUBUK PAKU</option>
+            <option value="1501072014">MUARA HEMAT</option>
+            <option value="1501072009">PASAR TAMIAI</option>
+            <option value="1501072008">PEMATANG LINGKUNG</option>
+            <option value="1501072010">SEBERANG MERANGIN</option>
+            <option value="1501072007">TAMIAI</option>
+            <option value="1501072004">TARUTUNG</option>
+          </select>
+        </div>
+
+        <div class="form-group" v-show="selectedWilayah === 'pps' && selectedKecamatan === '150120'"> <!--BUKITKERMAN-->
+          <label for="desa" class="fw-bold">Desa</label>
+          <select id="desa" v-model="selectedDesa" class="form-select">
+            <option value="" disabled selected>Pilih Desa</option>
+            <option value="1501202012">BINTANG MARAK</option>
+            <option value="1501202013">KARANG PANDAN</option>
+            <option value="1501202002">LOLO GEDANG</option>
+            <option value="1501202004">LOLO HILIR</option>
+            <option value="1501202003">LOLO KECIL</option>
+            <option value="1501202008">MUAK</option>
+            <option value="1501202015">MUARO LULO</option>
+            <option value="1501202001">PASAR KERMAN</option>
+            <option value="1501202014">PENGASI BARU</option>
+            <option value="1501202009">PENGASI LAMA</option>
+            <option value="1501202007">PONDOK</option>
+            <option value="1501202010">PULAUPANDAN</option>
+            <option value="1501202011">PULAUSANGKAR</option>
+            <option value="1501202006">TALANG KEMUNING</option>
+            <option value="1501202005">TANJUNG SYAM</option>
+          </select>
+        </div>
+
+        <div class="form-group" v-show="selectedWilayah === 'pps' && selectedKecamatan === '150102'"> <!--DANAU KERINCI-->
+          <label for="desa" class="fw-bold">Desa</label>
+          <select id="desa" v-model="selectedDesa" class="form-select">
+            <option value="" disabled selected>Pilih Desa</option>
+            <option value="1501022006">CUPAK</option>
+            <option value="1501022015">DUSUN BARU TANJUNG TANAH</option>
+            <option value="1501022002">KOTA BARU SANGGARAN AGUNG</option>
+            <option value="1501022008">KOTO TENGAH</option>
+            <option value="1501022016">PASAR SORE SELEMAN</option>
+            <option value="1501022003">PENDUNG TALANG GENTING</option>
+            <option value="1501022001">SANGGARAN AGUNG</option>
+            <option value="1501022004">SELEMAN</option>
+            <option value="1501022013">SIMPANG EMPAT</option>
+            <option value="1501022014">TALANG KEMULUN</option>
+            <option value="1501022018">TANJUNGHARAPAN</option>
+            <option value="1501022007">TANJUNGTANAH</option>
+            <option value="1501022005">TEBING TINGGI</option>
+          </select>
+        </div>
+
+        <div class="form-group" v-show="selectedWilayah === 'pps' && selectedKecamatan === '150123'"> <!--DANAU KERINCI BARAT-->
+          <label for="desa" class="fw-bold">Desa</label>
+          <select id="desa" v-model="selectedDesa" class="form-select">
+            <option value="" disabled selected>Pilih Desa</option>
+            <option value="1501232003">BUKIT PULAI</option>
+            <option value="1501232012">KOTO BARU SEMERAP</option>
+            <option value="1501232014">KOTO PATAH</option>
+            <option value="1501232010">KOTO TENGAH</option>
+            <option value="1501232001">PANCURAN TIGA</option>
+            <option value="1501232013">PASAR SEMERAP</option>
+            <option value="1501232006">PERMAI BARU</option>
+            <option value="1501232009">PONDOK SIGUANG</option>
+            <option value="1501232004">PUNAI MERINDU</option>
+            <option value="1501232011">SEMERAP</option>
+            <option value="1501232008">SERUMPUN PAUH</option>
+            <option value="1501232005">SUMUR JAUH</option>
+            <option value="1501232007">TANJUNG PAUH HILIR</option>
+            <option value="1501232002">TANJUNG PAUH MUDIK</option>
+          </select>
+        </div>
+
+        <div class="form-group" v-show="selectedWilayah === 'pps' && selectedKecamatan === '150117'"> <!--DEPATI TUJUH-->
+          <label for="desa" class="fw-bold">Desa</label>
+          <select id="desa" v-model="selectedDesa" class="form-select">
+            <option value="" disabled selected>Pilih Desa</option>
+            <option value="1501172002">BARU KUBANG</option>
+            <option value="1501172001">BELUI</option>
+            <option value="1501172006">BELUI TINGGI</option>
+            <option value="1501172015">KAYU AHO MANGKAK KOTO LANANG</option>
+            <option value="1501172012">KOTO LANANG</option>
+            <option value="1501172003">KOTO PANJANG</option>
+            <option value="1501172008">KOTO PAYANG</option>
+            <option value="1501172019">KOTO SIMPAI KUBANG</option>
+            <option value="1501172007">KOTO TUO</option>
+            <option value="1501172017">KUBANG AGUNG</option>
+            <option value="1501172004">KUBANG GEDANG</option>
+            <option value="1501172013">LADEH</option>
+            <option value="1501172014">LUBUK SULI</option>
+            <option value="1501172020">PAHLAWAN BELUI</option>
+            <option value="1501172010">SEKUNGKUNG</option>
+            <option value="1501172005">SEMUMU</option>
+            <option value="1501172011">SIMPANG BELUI</option>
+            <option value="1501172016">TAMBAK TINGGI</option>
+            <option value="1501172009">TEBAT IJUK</option>
+            <option value="1501172018">TEBAT IJUK DILI</option>
+          </select>
+        </div>
+
+        <div class="form-group" v-show="selectedWilayah === 'pps' && selectedKecamatan === '150106'"> <!--GUNUNG KERINCI-->
+          <label for="desa" class="fw-bold">Desa</label>
+          <select id="desa" v-model="selectedDesa" class="form-select">
+            <option value="" disabled selected>Pilih Desa</option>
+            <option value="1501062042">AIR BETUNG</option>
+            <option value="1501062040">BARU SUNGAI BETUNG MUDIK</option>
+            <option value="1501062016">DANAUTINGGI</option>
+            <option value="1501062013">SIMPANG TUTUP</option>
+            <option value="1501061009">SIULAK DERAS</option>
+            <option value="1501062018">SIULAK DERAS MUDIK</option>
+            <option value="1501062019">SIULAK TENANG</option>
+            <option value="1501062014">SUKO PANGKAT</option>
+            <option value="1501062039">SUNGAI BATU GANTIH HILIR</option>
+            <option value="1501062011">SUNGAIBATU GANTIH</option>
+            <option value="1501062010">SUNGAIBETUNG HILIR</option>
+            <option value="1501062015">SUNGAIBETUNG MUDIK</option>
+            <option value="1501062017">SUNGAIGELAMPEH</option>
+            <option value="1501062012">TANJUNGGENTING</option>
+            <option value="1501062041">TANJUNGGENTING MUDIK</option>
+            <option value="1501062043">UJUNG LADANG</option>
+          </select>
+        </div>
+
+        <div class="form-group" v-show="selectedWilayah === 'pps' && selectedKecamatan === '150101'"> <!--GUNUNG RAYA-->
+          <label for="desa" class="fw-bold">Desa</label>
+          <select id="desa" v-model="selectedDesa" class="form-select">
+            <option value="" disabled selected>Pilih Desa</option>
+            <option value="1501012002">AIR MUMU</option>
+            <option value="1501012013">DUSUN BARU LEMPUR</option>
+            <option value="1501012011">KEBUN BARU</option>
+            <option value="1501012019">KEBUN LIMA</option>
+            <option value="1501012006">LEMPUR HILIR</option>
+            <option value="1501012003">LEMPUR MUDIK</option>
+            <option value="1501011004">LEMPUR TENGAH</option>
+            <option value="1501012018">MANJUNTO LEMPUR</option>
+            <option value="1501012005">MASGO</option>
+            <option value="1501012012">PERIKAN TENGAH</option>
+            <option value="1501012001">SELAM PAUNG</option>
+            <option value="1501012016">SUNGAIHANGAT</option>
+          </select>
+        </div>
+
+        <div class="form-group" v-show="selectedWilayah === 'pps' && selectedKecamatan === '150115'"> <!--GUNUNG TUJUH-->
+          <label for="desa" class="fw-bold">Desa</label>
+          <select id="desa" v-model="selectedDesa" class="form-select">
+            <option value="" disabled selected>Pilih Desa</option>
+            <option value="1501152006">BENGKOLAN DUO</option>
+            <option value="1501152009">BUMBUN DURI</option>
+            <option value="1501152005">JERNIH JAYA</option>
+            <option value="1501152007">LUBUK PAUH</option>
+            <option value="1501152011">PAUH TINGGI</option>
+            <option value="1501152004">PELOMPEK</option>
+            <option value="1501152013">PELOMPEK PASAR BARU</option>
+            <option value="1501152010">PESISIR BUKIT</option>
+            <option value="1501152012">SUNGAIJERNIH</option>
+            <option value="1501152001">SUNGAIRUMPUN</option>
+            <option value="1501152002">SUNGAISIKAI</option>
+            <option value="1501152003">TANGKIL</option>
+            <option value="1501152008">TELUN BERASAP</option>
+          </select>
+        </div>
+
+        <div class="form-group" v-show="selectedWilayah === 'pps' && selectedKecamatan === '150109'"> <!--KAYU ARO-->
+          <label for="desa" class="fw-bold">Desa</label>
+          <select id="desa" v-model="selectedDesa" class="form-select">
+            <option value="" disabled selected>Pilih Desa</option>
+            <option value="1501092025">BATANG SANGIR</option>
+            <option value="1501092024">BEDENG BARU</option>
+            <option value="1501092049">BENDUNG AIR TIMUR</option>
+            <option value="1501092012">KERSIK TUO</option>
+            <option value="1501092014">KOTO BARU</option>
+            <option value="1501092015">KOTO PANJANG</option>
+            <option value="1501092038">KOTO PERIANG</option>
+            <option value="1501092016">KOTO TENGAH</option>
+            <option value="1501092010">KOTO TUO</option>
+            <option value="1501092039">LINDUNG JAYA</option>
+            <option value="1501092045">MEKAR JAYA</option>
+            <option value="1501092043">MEKAR SARI</option>
+            <option value="1501092042">PASAR SUNGAI TANDUK</option>
+            <option value="1501092041">RENAH KASAH</option>
+            <option value="1501092013">SANGIR</option>
+            <option value="1501092047">SANGIR TENGAH</option>
+            <option value="1501092017">SUNGAIBENDUNG AIR</option>
+            <option value="1501092030">SUNGAIDALAM</option>
+            <option value="1501092022">SUNGAISAMPUN</option>
+            <option value="1501092011">SUNGAITANDUK</option>
+            <option value="1501092048">TANJUNGBUNGO</option>
+          </select>
+        </div>
+
+        <div class="form-group" v-show="selectedWilayah === 'pps' && selectedKecamatan === '150119'"> <!--KAYU ARO BARAT-->
+          <label for="desa" class="fw-bold">Desa</label>
+          <select id="desa" v-model="selectedDesa" class="form-select">
+            <option value="" disabled selected>Pilih Desa</option>
+            <option value="1501192001">BATU HAMPAR</option>
+            <option value="1501192003">BEDENG DELAPAN</option>
+            <option value="1501192004">BEDENG DUA</option>
+            <option value="1501192013">BENTO</option>
+            <option value="1501192017">ENSATU</option>
+            <option value="1501192011">GIRI MULYO</option>
+            <option value="1501192012">GUNUNGLABU</option>
+            <option value="1501192014">KAMPUNG BARU</option>
+            <option value="1501192007">KEBUN BARU</option>
+            <option value="1501192016">PASAR MINGGU</option>
+            <option value="1501192008">PATOK EMPAT</option>
+            <option value="1501192005">SAKO DUO</option>
+            <option value="1501192015">SUNGAIASAM</option>
+            <option value="1501192009">SUNGAIJAMBU</option>
+            <option value="1501192010">SUNGAIKERING</option>
+            <option value="1501192006">SUNGAILINTANG</option>
+            <option value="1501192002">SUNGAIRENAH</option>
+          </select>
+        </div>
+
+        <div class="form-group" v-show="selectedWilayah === 'pps' && selectedKecamatan === '150108'"> <!--KELILING DANAU-->
+          <label for="desa" class="fw-bold">Desa</label>
+          <select id="desa" v-model="selectedDesa" class="form-select">
+            <option value="" disabled selected>Pilih Desa</option>
+            <option value="1501082006">BENIK</option>
+            <option value="1501082013">DSN. BARU P. TENGAH</option>
+            <option value="1501082025">JEMBATAN MERAH PULAU TENGAH</option>
+            <option value="1501082001">JUJUN</option>
+            <option value="1501082003">KELURU</option>
+            <option value="1501082019">KOTO AGUNG</option>
+            <option value="1501082023">KOTO BARU</option>
+            <option value="1501082007">KT TUO P. TENGAH</option>
+            <option value="1501082008">KT. DIAN P. TENGAH</option>
+            <option value="1501082012">LEMPUR DANAU</option>
+            <option value="1501082026">LIMOK MANAIH PULAU TENGAH</option>
+            <option value="1501082028">PANCURAN BANGKO</option>
+            <option value="1501082027">PASAR JUJUN</option>
+            <option value="1501082004">PIDUNG</option>
+            <option value="1501082022">PULAUTENGAH</option>
+            <option value="1501082002">TALANG LINDUNG</option>
+            <option value="1501082005">TANJUNGBATU</option>
+            <option value="1501082018">TELAGO</option>
+          </select>
+        </div>
+
+        <div class="form-group" v-show="selectedWilayah === 'pps' && selectedKecamatan === '150104'"> <!--SITINJAU LAUT-->
+          <label for="desa" class="fw-bold">Desa</label>
+          <select id="desa" v-model="selectedDesa" class="form-select">
+            <option value="" disabled selected>Pilih Desa</option>
+            <option value="1501042009">AMBAI ATAS</option>
+            <option value="1501042026">AMBAI BAWAH</option>
+            <option value="1501042030">ANGKASA PURA</option>
+            <option value="1501042014">BETUNG KUNING</option>
+            <option value="1501042028">HIANG KARYA</option>
+            <option value="1501042029">HIANG LESTARI</option>
+            <option value="1501042031">HIANG SAKTI</option>
+            <option value="1501042008">HIANG TINGGI</option>
+            <option value="1501042013">KOTO BARU HIANG</option>
+            <option value="1501042033">KOTO SEKILAN AMBAI</option>
+            <option value="1501042034">PENAWAR TINGGI</option>
+            <option value="1501042012">PENDUNG HILIR</option>
+            <option value="1501042011">PENDUNG TENGAH</option>
+            <option value="1501042010">TANJUNGMUDO</option>
+          </select>
+        </div>
+
+        <div class="form-group" v-show="selectedWilayah === 'pps' && selectedKecamatan === '150116'"> <!--SIULAK-->
+          <label for="desa" class="fw-bold">Desa</label>
+          <select id="desa" v-model="selectedDesa" class="form-select">
+            <option value="" disabled selected>Pilih Desa</option>
+            <option value="1501162016">AIR TERJUN</option>
+            <option value="1501162033">BARU SUNGAIPEGEH</option>
+            <option value="1501162034">BENDAR SEDAP</option>
+            <option value="1501162039">DEMONG SAKTI</option>
+            <option value="1501162014">DUSUN BARU</option>
+            <option value="1501162015">DUSUN DALAM</option>
+            <option value="1501162019">KOTO ARO</option>
+            <option value="1501162013">KOTO BERINGIN</option>
+            <option value="1501162012">KOTO KAPEH</option>
+            <option value="1501162021">KOTO LEBUH TINGGI</option>
+            <option value="1501162007">KOTO RENDAH</option>
+            <option value="1501162025">KOTO TENGAH</option>
+            <option value="1501162009">LUBUK NAGODANG</option>
+            <option value="1501162036">PADANG JANTUNG</option>
+            <option value="1501162040">PASAR SENEN</option>
+            <option value="1501162004">PASAR SIULAK GEDANG</option>
+            <option value="1501162038">PELAK GEDANG</option>
+            <option value="1501162035">PLAK NANEH</option>
+            <option value="1501162001">SIULAK GEDANG</option>
+            <option value="1501162024">SIULAK KECIL HILIR</option>
+            <option value="1501162006">SIULAK KECIL MUDIK</option>
+            <option value="1501162005">SIULAK PANJANG</option>
+            <option value="1501162011">SUNGAILEBUH</option>
+            <option value="1501162010">SUNGAIPEGEH</option>
+            <option value="1501162028">TELAGO BIRU</option>
+            <option value="1501162030">TUTUNG BUNGKUK</option>
+          </select>
+        </div>
+
+        <div class="form-group" v-show="selectedWilayah === 'pps' && selectedKecamatan === '150118'"> <!--SIULAK MUKAI-->
+          <label for="desa" class="fw-bold">Desa</label>
+          <select id="desa" v-model="selectedDesa" class="form-select">
+            <option value="" disabled selected>Pilih Desa</option>
+            <option value="1501182014">KOTO LUA</option>
+            <option value="1501182013">LUBUK TABUN</option>
+            <option value="1501182001">MUKAI HILIR</option>
+            <option value="1501182003">MUKAI MUDIK</option>
+            <option value="1501182007">MUKAI PINTU</option>
+            <option value="1501182011">MUKAI SEBERANG</option>
+            <option value="1501182002">MUKAI TENGAH</option>
+            <option value="1501182006">MUKAI TINGGI</option>
+            <option value="1501182009">PASIR JAYA</option>
+            <option value="1501182004">SENIMPIK</option>
+            <option value="1501182010">SUNGAIKUNING</option>
+            <option value="1501182008">SUNGAILANGKAP</option>
+            <option value="1501182012">TALANG TINGGI</option>
+            <option value="1501182005">TEBING TINGGI</option>
+          </select>
+        </div>
+
+        <div class="form-group" v-show="selectedWilayah === 'pps' && selectedKecamatan === '150122'"> <!--TANAH COGOK-->
+          <label for="desa" class="fw-bold">Desa</label>
+          <select id="desa" v-model="selectedDesa" class="form-select">
+            <option value="" disabled selected>Pilih Desa</option>
+            <option value="1501222010">AGUNG KOTO IMAN</option>
+            <option value="1501222012">BARU SEMERAH</option>
+            <option value="1501222002">BUNGA TANJUNG</option>
+            <option value="1501222001">KAYU ARO AMBAI</option>
+            <option value="1501222011">KOTO IMAN</option>
+            <option value="1501222008">KOTO PETAI</option>
+            <option value="1501222009">KOTO SALAK</option>
+            <option value="1501222006">KOTO TUO UJUNG PASIR</option>
+            <option value="1501222003">PONDOK BERINGIN</option>
+            <option value="1501222005">SEBUKAR</option>
+            <option value="1501222004">SEMERAH</option>
+            <option value="1501222007">UJUNG PASIR</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="jenis" class="fw-bold">Jenis Naskah Dinas</label>
+          <select id="jenis" v-model="selectedJenis" class="form-select" >
+            <option value="" disabled selected>Pilih Jenis Naskah Dinas</option>
+            <option value="ST">Surat Tugas </option>
+            <option value="ND">Nota Dinas </option>
+            <option value="LD">Disposisi </option>
+            <option value="SD">Surat Dinas</option>
+            <option value="Und">Surat Undangan</option>
+            <option value="BA">Berita Acara</option>
+            <option value="PU">Pengumuman</option>
+            <option value="LP">Laporan </option>
+            <option value="NT">Notula </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="kode-kegiatan" class="fw-bold">Kegiatan</label>
+          <select id="kode-kegiatan" v-model="selectedKodeKegiatan" class="form-select">
+            <option value="" disabled selected>Pilih Kode Kegiatan</option>
+            <option value="PP.05.1">Rapat Kerja dan Rapat Koordinasi di Setiap Tingkatan</option>
+            <option value="PP.06.1">Sosialisasi, Bimbingan Teknis, Penyuluhan, Publikasi dan Pendidikan Pemilih</option>
+            <option value="PP.07.1">Pengelolaan Data dan Informasi</option>
+            <option value="PL.01.1">Pemutahiran Data Pemilih dan Penyusunan Daftar Pemilih</option>
+            <option value="PL.01.4">Pencalonan</option>
+            <option value="PL.01.8">Pemungutan, Penghitungan, dan Penetapan Hasil Rekapitulasi Suara</option>
+            <option value="PY.01.1">Sengketa Pemilu</option>
+            <option value="PY.01.2">Keuangan</option>
+            <option value="PY.01.3">Pengelolaan Arsip Penyelenggaraan Pemilu</option>
+            <option value="PY.01.4">Penyusunan Dokumentasi Penyelenggaraan Pemilu</option>
+            <option value="PY.01.5">Evaluasi dan Pelaporan Penyelenggaraan Pemilu</option>
+            <optgroup label="Logistik">
+              <option value="PP.08.1">Pengelolaan Data dan Dokumentasi Kebutuhan Sarana</option>
+              <option value="PP.08.2">Standar Barang/Jasa Sarana dan Prasarana</option>
+              <option value="PP.08.3">Administrasi dan Alokasi Sarana dan Prasarana</option>
+              <option value="PP.08.4">Distribusi Sarana dan Prasarana Pemilu (Angkutan Reguler/Non Reguler)</option>
+              <option value="PP.08.5">Penyimpanan Sarana</option>              
+            </optgroup>
+          </select>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary mt-3 mb-3" @click="generateNomorSurat()">Generate Nomor Surat</button>
+        </div>
+        <div class="form-group" v-show="nomorSurat !== ''">
+          <label for="nomor-surat" class="fw-bold">Nomor Surat</label>
+          <input id="nomor-surat" v-model="nomorSurat" class="form-control fs-1 " readonly>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div style="text-align:center">
+        © Copyright 2023 <a target="_blank" href="https://www.instagram.com/final_afriola/">final afriola</a> 
+      </div>
+    </div>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        selectedWilayah: '',
+        selectedKecamatan: '',
+        selectedDesa: '',
+        selectedJenis: '',
+        selectedKodeKegiatan: '',
+        nomorSurat: ''
+      },
+      methods: {
+        generateNomorSurat: function () {
+          if (!this.selectedWilayah || !this.selectedJenis || !this.selectedKodeKegiatan || !this.selectedKecamatan) {
+        this.showWarning = true;
+        this.nomorSurat = '';
+        return;
+      }
+
+          let nomorSurat = '';
+          nomorSurat += 'No_Surat/' + this.selectedKodeKegiatan;
+          nomorSurat += '-' + this.selectedJenis;
+          if (this.selectedWilayah === 'ppk') {
+            nomorSurat += '/' + this.selectedKecamatan;
+          } else if (this.selectedWilayah === 'pps') {
+            nomorSurat += '/' + this.selectedDesa;
+          }
+          nomorSurat += '/' + new Date().getFullYear();
+          this.nomorSurat = nomorSurat;
+          this.showWarning = false;
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
